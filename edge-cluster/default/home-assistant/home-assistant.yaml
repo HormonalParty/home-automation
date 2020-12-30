@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: home-assistant
+      version: 5.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: homeassistant/home-assistant
+      tag: 2020.12.1
+    env:
+      TZ: "Europe/Berlin"
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
+    service:
+      type: LoadBalancer
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+      hosts:
+      - host: homeassistant.hormonal.party
+        paths:
+        - path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - "homeassistant.hormonal.party"
+    prometheus:
+      serviceMonitor:
+        enabled: false
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: true
+    persistence:
+      config:
+        enabled: true
+        storageClass: "local-path"
+        accessMode: ReadWriteOnce
+        size: "10Gi"
+    resources:
+      limits:
+        memory: 2500Mi
+      requests:
+        cpu: 100m
+        memory: 1000Mi
+    postgresql:
+      enabled: true
+      postgresqlUsername: home-assistant
+      postgresqlDatabase: home-assistant
+      persistence:
+        enabled: true
+        storageClass: "local-path"
