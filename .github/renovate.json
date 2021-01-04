@@ -1,0 +1,39 @@
+{
+  "enabled": true,
+  "timezone": "Europe/Berlin",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "commitMessageSuffix": "[ci-skip]",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "assignees": ["@endocrimes"],
+  "helm-values": {
+    "fileMatch": ["./.+\\.yaml$"]
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["./.+\\.yaml$"],
+      "matchStrings": [
+        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "helm"
+    }
+  ],
+  "packageRules": [
+    {
+      "datasources": ["helm"],
+      "commitMessageTopic": "Helm chart {{depName}}",
+      "separateMinorPatch": true
+    },
+    {
+      "datasources": ["docker"],
+      "automerge": true,
+      "requiredStatusChecks": null,
+      "schedule": "after 1am and before 8am",
+      "updateTypes": ["minor", "patch"],
+      "packageNames": [
+        "homeassistant/home-assistant"
+      ]
+    }
+  ]
+}
