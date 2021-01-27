@@ -35,5 +35,6 @@ spec:
         cpu: 100m
         memory: 250Mi
     upstreamProxy:
-      enabled: true
+      enabled: false # Disabled to see if we get a noticable improvement from
+                     # caching everything locally
       url: "https://proxy.golang.org"
