@@ -21,11 +21,13 @@ spec:
       type: NodePort
       nodePort:
         port: 30001
-    persistence:
-      enabled: true
-      accessMode: ReadWriteOnce
-      size: 4Gi
-      storageClass: "local-path"
+    storage:
+      disk:
+        persistence:
+          enabled: true
+          accessMode: ReadWriteOnce
+          size: 4Gi
+          storageClass: "local-path"
     resources:
       limits:
         memory: 250Mi
