@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: athens-charts
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://athens.blob.core.windows.net/charts/
+  timeout: 3m
