@@ -22,32 +22,27 @@ spec:
       tag: 2021.1.5
     env:
       TZ: "Europe/Berlin"
+
+    # Host Networking is required for device discovery with home-assistant.
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
+
+    # Disable service creation because load balancing is handled by an external
+    # service and we have host networking. When we switch to using k8s ingresses
+    # this will need to change.
     service:
-      type: NodePort
-    prometheus:
-      serviceMonitor:
-        enabled: false
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: true
+      enabled: false
+
+    # TODO: Enable git support and/or mount this from nfs when we setup nfs CSI
     persistence:
       config:
         enabled: true
         storageClass: "local-path"
         accessMode: ReadWriteOnce
         size: "10Gi"
-    resources:
-      limits:
-        memory: 2500Mi
-      requests:
-        cpu: 100m
-        memory: 1000Mi
+
+    # Store history in a dedicated postgres - The data is non-essential so local
+    # is fine.
     postgresql:
       enabled: true
       postgresqlUsername: home-assistant
@@ -55,3 +50,23 @@ spec:
       persistence:
         enabled: true
         storageClass: "local-path"
+
+    # TODO: setup monitoring
+    prometheus:
+      serviceMonitor:
+        enabled: false
+
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: true
+
+    resources:
+      limits:
+        memory: 2500Mi
+      requests:
+        cpu: 100m
+        memory: 1000Mi
