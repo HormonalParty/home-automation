@@ -27,7 +27,7 @@ spec:
     service:
       type: LoadBalancer
     ingress:
-      enabled: true
+      enabled: false # Disabled until we move apartment ingress to this node
       annotations:
         kubernetes.io/ingress.class: "nginx"
       hosts:
