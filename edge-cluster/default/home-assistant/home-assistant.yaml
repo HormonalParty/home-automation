@@ -29,11 +29,14 @@ spec:
 
     service:
       enabled: true
+      type: LoadBalancer
+      port:
+        port: 8081
+        targetPort: 8123
 
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: "traefik"
         cert-manager.io/cluster-issuer: "letsencrypt-staging"
       hosts:
       - host: homeassistant.hormonal.party
