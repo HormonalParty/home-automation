@@ -27,6 +27,8 @@ spec:
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
 
+    # This service is actually kind of pointless but means that the ingress gets
+    # created properly and I don't want to keep messing with it.
     service:
       enabled: true
       type: LoadBalancer
@@ -37,7 +39,7 @@ spec:
     ingress:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
       - host: homeassistant.hormonal.party
         paths:
