@@ -29,9 +29,6 @@ spec:
 
     service:
       enabled: true
-      type: ClusterIP
-      port:
-        port: null
 
     ingress:
       enabled: true
