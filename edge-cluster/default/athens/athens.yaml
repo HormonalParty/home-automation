@@ -17,10 +17,16 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    service:
-      type: NodePort
-      nodePort:
-        port: 30001
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - goproxy.hormonal.party
+      tls:
+      - hosts:
+        - goproxy.hormonal.party
+        secretName: goproxy-tls-cert
     storage:
       disk:
         persistence:
