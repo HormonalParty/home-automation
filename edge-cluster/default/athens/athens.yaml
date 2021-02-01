@@ -34,6 +34,8 @@ spec:
           accessMode: ReadWriteOnce
           size: 4Gi
           storageClass: "local-path"
+    jaeger:
+      enabled: false
     resources:
       limits:
         memory: 250Mi
