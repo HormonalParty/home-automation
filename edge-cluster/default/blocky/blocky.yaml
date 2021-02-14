@@ -55,7 +55,7 @@ spec:
         enable: false
         path: /metrics
       httpPort: 4000
-      logLevel: info
+      logLevel: warn
     probes:
       liveness:
         failureThreshold: 5
