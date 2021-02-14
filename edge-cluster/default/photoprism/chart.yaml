@@ -26,6 +26,7 @@ spec:
       PHOTOPRISM_SITE_TITLE: "Photos"
       PHOTOPRISM_SITE_AUTHOR: "@endocrimes"
       PHOTOPRISM_ADMIN_PASSWORD: "photoprism"
+      PHOTOPRISM_ORIGINALS_PATH:  "/photoprism/mnt/danielle/Photos/Lightroom CC/Lightroom CC/e7971125162943fe8e34ac065747b7b7/originals"
     ingress:
       enabled: true
       annotations:
@@ -39,10 +40,12 @@ spec:
       - hosts:
         - photos.hormonal.party
         secretName: photoprism-cert
+    securityContext:
+      runAsUser: 1000
     persistence:
       config:
         enabled: true
       originals:
         enabled: true
-        accessMode: ReadWriteOnce
-        size: 30Gi
+        existingClaim: nfs-pictures-pvc
+        mountPath: "/photoprism/mnt/danielle"
