@@ -40,6 +40,8 @@ spec:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        traefik.ingress.kubernetes.io/frontend-entry-points: http, https
+        traefik.ingress.kubernetes.io/redirect-entry-point: https
       hosts:
       - host: homeassistant.hormonal.party
         paths:
