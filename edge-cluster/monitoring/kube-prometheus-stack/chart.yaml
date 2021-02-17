@@ -70,6 +70,8 @@ spec:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
+          traefik.ingress.kubernetes.io/frontend-entry-points: http, https
+          traefik.ingress.kubernetes.io/redirect-entry-point: https
         hosts:
           - grafana.hormonal.party
         path: /
@@ -77,6 +79,14 @@ spec:
           - secretName: grafana-general-tls
             hosts:
             - grafana.hormonal.party
+      dashboards:
+        default:
+          flux-cluster:
+            url: https://raw.githubusercontent.com/fluxcd/flux2/v0.4.2/manifests/monitoring/grafana/dashboards/cluster.json
+            datasource: Prometheus
+          flux-control-plane:
+            url: https://raw.githubusercontent.com/fluxcd/flux2/v0.4.2/manifests/monitoring/grafana/dashboards/control-plane.json
+            datasource: Prometheus
       sidecar:
         dashboards:
           enabled: true
@@ -108,8 +118,8 @@ spec:
       enabled: true
       service:
         port: 9153
-        targetPort: 9153
-      serviceMonitor:
+          targetPort: 9153
+        serviceMonitor:
         metricRelabelings:
           - action: keep
             regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
