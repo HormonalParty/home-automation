@@ -118,7 +118,7 @@ spec:
       enabled: true
       service:
         port: 9153
-          targetPort: 9153
+        targetPort: 9153
         serviceMonitor:
         metricRelabelings:
           - action: keep
