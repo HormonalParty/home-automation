@@ -1,0 +1,7 @@
+# Disabling ali ad-tracking breaks the language selector.
+# They don't meaningfully advertise in DE anyway though.
+s.click.aliexpress.com
+
+www.reddit.com
+files.slack.com
+slack.com
