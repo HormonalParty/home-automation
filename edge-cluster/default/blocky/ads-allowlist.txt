@@ -5,3 +5,4 @@ s.click.aliexpress.com
 www.reddit.com
 files.slack.com
 slack.com
+de.ign.com
