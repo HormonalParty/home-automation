@@ -14,7 +14,7 @@ metadata:
   name: plex
 subsets:
   - addresses:
-      - ip: 192.168.178.123
+      - ip: 192.168.178.30
     ports:
       - port: 32400
 ---
