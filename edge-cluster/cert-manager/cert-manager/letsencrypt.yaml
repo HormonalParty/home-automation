@@ -9,6 +9,7 @@ spec:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-staging-account-key
+    preferredChain: "ISRG Root X1"
     solvers:
     # An empty 'selector' means that this solver matches all domains
     - selector: {}
@@ -26,6 +27,7 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod-account-key
+    preferredChain: "ISRG Root X1"
     solvers:
     # An empty 'selector' means that this solver matches all domains
     - selector: {}
