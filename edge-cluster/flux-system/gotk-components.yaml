@@ -1973,6 +1973,14 @@ rules:
   verbs:
   - create
   - patch
+# Temporary fix to get things working again after a rebuild
+- apiGroups:
+  - ""
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
