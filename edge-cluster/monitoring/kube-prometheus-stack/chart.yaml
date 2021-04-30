@@ -183,7 +183,7 @@ spec:
         pullPolicy: IfNotPresent
       prometheusConfigReloaderImage:
         repository: quay.io/prometheus-operator/prometheus-config-reloader
-        tag: v0.46.0
+        tag: v0.47.1
         sha: ""
       configReloaderCpu: 100m
       configReloaderMemory: 50Mi
