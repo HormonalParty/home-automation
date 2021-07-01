@@ -206,7 +206,7 @@ spec:
         enableAdminAPI: false
         image:
           repository: quay.io/prometheus/prometheus
-          tag: v2.25.1
+          tag: v2.28.1
           sha: ""
         retention: 10d
         walCompression: false
