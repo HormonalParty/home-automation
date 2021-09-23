@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
-      version: 6.3.1
+      version: 11.0.3
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -52,23 +52,12 @@ spec:
         - "homeassistant.hormonal.party"
         secretName: homeassistant-tls-cert
 
-    # TODO: Enable git support and/or mount this from nfs when we setup nfs CSI
     persistence:
       config:
         enabled: true
         storageClass: "local-path"
         accessMode: ReadWriteOnce
         size: "10Gi"
-
-    # Store history in a dedicated postgres - The data is non-essential so local
-    # is fine.
-    postgresql:
-      enabled: true
-      postgresqlUsername: home-assistant
-      postgresqlDatabase: home-assistant
-      persistence:
-        enabled: true
-        storageClass: "local-path"
 
     # TODO: setup monitoring
     prometheus:
@@ -85,7 +74,7 @@ spec:
 
     resources:
       limits:
-        memory: 2500Mi
+        memory: 3072Mi
       requests:
         cpu: 100m
-        memory: 1000Mi
+        memory: 1024Mi
