@@ -54,7 +54,7 @@ spec:
 
     persistence:
       config:
-        enabled: true
+        enabled: false
         storageClass: "local-path"
         accessMode: ReadWriteOnce
         size: "10Gi"
