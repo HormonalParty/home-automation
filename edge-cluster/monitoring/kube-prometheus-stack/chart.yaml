@@ -178,7 +178,7 @@ spec:
             action: replace
       image:
         repository: quay.io/prometheus-operator/prometheus-operator
-        tag: v0.49.0
+        tag: v0.52.0
         sha: ""
         pullPolicy: IfNotPresent
       prometheusConfigReloaderImage:
